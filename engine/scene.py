@@ -39,8 +39,8 @@ class Scene:
             "window": {
                 "width": self.windowRect.width,
                 "height": self.windowRect.height,
+                "title": self.title,
             },
-            "title": self.title,
         }
         actor_list = []
         for actor in self.actors:

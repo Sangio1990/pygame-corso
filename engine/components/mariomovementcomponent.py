@@ -75,6 +75,14 @@ class MarioMovementComponent(Component):
 
         temp = MarioMovementComponent(r)
         temp.name = componentDescriptor["name"]
+        # If the actor was moving we keep the inertia while loading
+        try:
+            temp.vx = componentDescriptor["vx"]
+            temp.vy = componentDescriptor["vy"]
+        except KeyError:
+            # If not we set it as standing on the given point
+            temp.vx = 0
+            temp.vy = 0
         return temp
 
     def saveToDict(self):
@@ -83,11 +91,13 @@ class MarioMovementComponent(Component):
             **savedict,
             **{
                 "boundingRect": {
-                    "x": self.owner.x,
-                    "y": self.owner.y,
+                    "x": self.boundingRect.left,
+                    "y": self.boundingRect.top,
                     "width": self.boundingRect.width,
                     "height": self.boundingRect.height,
                 },
+                "vx": self.vx,
+                "vy": self.vy,
             },
         }
         return savedict

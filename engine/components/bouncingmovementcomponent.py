@@ -56,8 +56,8 @@ class BouncingMovementComponent(Component):
             **savedict,
             **{
                 "boundingRect": {
-                    "x": self.owner.x,
-                    "y": self.owner.y,
+                    "x": self.boundingRect.left,
+                    "y": self.boundingRect.top,
                     "width": self.boundingRect.width,
                     "height": self.boundingRect.height,
                 },
