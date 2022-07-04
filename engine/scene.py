@@ -5,6 +5,7 @@ class Scene:
     def __init__(self):
         # there will be actors acting things
         self.actors = []
+        self.title = "No Title"
         self.windowRect = rect.Rect(0, 0, 0, 0)
 
     def load(self):
@@ -24,6 +25,7 @@ class Scene:
         windowDescriptor = sceneDescriptor["window"]
         self.windowRect.height = windowDescriptor["height"]
         self.windowRect.width = windowDescriptor["width"]
+        self.title = windowDescriptor["title"]
 
         # Loading each actor in the scene
         from .actor import Actor
@@ -34,7 +36,11 @@ class Scene:
 
     def saveToDict(self):
         savedict = {
-            "window": {"width": self.windowRect.width, "height": self.windowRect.height}
+            "window": {
+                "width": self.windowRect.width,
+                "height": self.windowRect.height,
+            },
+            "title": self.title,
         }
         actor_list = []
         for actor in self.actors:

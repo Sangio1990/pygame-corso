@@ -6,8 +6,8 @@ import math
 class PathMovementComponent(Component):
     def __init__(self, path, actor=None):
         super().__init__(actor)
-        self.vx = path[0]["x"]
-        self.vy = path[0]["y"]
+        self.vx = 0
+        self.vy = 0
         self.index = 0
         self.path = path
 

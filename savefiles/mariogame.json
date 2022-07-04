@@ -1,0 +1,35 @@
+{
+    "window": {
+        "width": 800,
+        "height": 500,
+        "title" : "SUPER MARIO!"
+    },
+    "actors": [
+        {
+            "name": "Mario",
+            "type": "BaseActor",
+            "module": "engine.actors.baseactor",
+            "x": 400,
+            "y": 300,
+            "components": [
+                {
+                    "name": "sprite",
+                    "type": "StaticSpriteComponent",
+                    "module": "engine.components.staticspritecomponent",
+                    "fileName": "assets/mario.png"
+                },
+                {
+                    "name": "mario",
+                    "type": "MarioMovementComponent",
+                    "module": "engine.components.mariomovementcomponent",
+                    "boundingRect": {
+                        "x": 0,
+                        "y": 0,
+                        "width": 800,
+                        "height": 468
+                    }
+                }
+            ]
+        }
+    ]
+}

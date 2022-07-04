@@ -1,7 +1,8 @@
 {
     "window": {
         "width": 550,
-        "height": 700
+        "height": 700,
+        "title" : "PAC-MAN!"
     },
     "actors": [
         {
