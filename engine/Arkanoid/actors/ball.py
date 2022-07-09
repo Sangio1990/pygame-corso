@@ -1,21 +1,30 @@
-from ..actor import Actor
+from ...actor import Actor
+from ...component import Component
 
 
-# Right now we don't have special things in this class, i need this class only for loading and saving purpose.
-class BaseActor(Actor):
-    pass
+class Ball(Actor):
+    def __init__(self, name, x, y, vx, vy):
+        super().__init__(name, x, y)
+        self.vx = vx
+        self.vy = vy
+
+    def onCollision(self, direction):
+        for component in self.components:
+            try:
+                component.onCollision(direction)
+            except:
+                pass
 
     @staticmethod
     def loadFromDict(actorDescriptor):
         name = actorDescriptor["name"]
         x = actorDescriptor["x"]
         y = actorDescriptor["y"]
-
-        actor = BaseActor(name, x, y)
+        vx = actorDescriptor["vx"]
+        vy = actorDescriptor["vy"]
+        actor = Ball(name, x, y, vx, vy)
 
         # Loading each component in the actor
-        from ..component import Component
-
         for componentDescriptor in actorDescriptor["components"]:
             component = Component.loadFromDict(componentDescriptor)
             actor.addComponent(component)

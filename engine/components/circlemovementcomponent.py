@@ -3,8 +3,8 @@ import math
 
 
 class CircleMovementComponent(Component):
-    def __init__(self, radius, center, speed, starting_angle, actor=None):
-        super().__init__(actor)
+    def __init__(self, name, radius, center, speed, starting_angle):
+        super().__init__(name)
         self.radius = radius
         self.center = center
         self.angle = math.radians(starting_angle)  # must be a number between 0 and 360
@@ -35,8 +35,9 @@ class CircleMovementComponent(Component):
         center = (componentDescriptor["center_x"], componentDescriptor["center_y"])
         speed = componentDescriptor["speed"]
         starting_angle = componentDescriptor["starting_angle"]
-        temp = CircleMovementComponent(radius, center, speed, starting_angle)
-        temp.name = componentDescriptor["name"]
+        name = componentDescriptor["name"]
+
+        temp = CircleMovementComponent(name, radius, center, speed, starting_angle)
         return temp
 
     def saveToDict(self):

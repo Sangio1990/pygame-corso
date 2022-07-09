@@ -1,9 +1,13 @@
-from ..actor import Actor
+from ...actor import Actor
+from ...component import Component
 
 
-# Right now we don't have special things in this class, i need this class only for loading and saving purpose.
-class BaseActor(Actor):
-    pass
+class Racket(Actor):
+    def __init__(self, name, x, y):
+        super().__init__(name, x, y)
+
+    def onCollision(self, otherCollider):
+        pass
 
     @staticmethod
     def loadFromDict(actorDescriptor):
@@ -11,11 +15,9 @@ class BaseActor(Actor):
         x = actorDescriptor["x"]
         y = actorDescriptor["y"]
 
-        actor = BaseActor(name, x, y)
+        actor = Racket(name, x, y)
 
         # Loading each component in the actor
-        from ..component import Component
-
         for componentDescriptor in actorDescriptor["components"]:
             component = Component.loadFromDict(componentDescriptor)
             actor.addComponent(component)

@@ -4,6 +4,7 @@ from pygame.locals import *
 from .scenefactory import SceneFactory
 from .inputsystem import InputSystem
 from .scene import Scene
+from .collisionsystem import CollisionSystem
 
 
 class Singleton(type):
@@ -19,6 +20,7 @@ class Engine(metaclass=Singleton):
     def __init__(self):
         pygame.init()
         self.inputSystem = InputSystem()
+        self.collisionSystem = CollisionSystem()
         self.scene = None
         self.window = None
         self.quit = False
@@ -54,10 +56,14 @@ class Engine(metaclass=Singleton):
                 self.quit = True
 
         self.inputSystem.process()
+        self.collisionSystem.process()
 
     def update(self):
         self.newTime = time.time()
         deltaTime = self.newTime - self.oldTime
+        # In case of hard lag the game won't run under 30fps
+        if deltaTime > 0.03:
+            deltaTime = 0.03
         self.scene.update(deltaTime)
 
         self.oldTime = self.newTime  # prepare for the next frame

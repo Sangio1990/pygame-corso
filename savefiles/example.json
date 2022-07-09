@@ -58,6 +58,17 @@
                     },
                     "vx": 50,
                     "vy": 30
+                },
+                {
+                    "name": "Collider",
+                    "type": "ColliderComponent",
+                    "module": "engine.components.collidercomponent",
+                    "boundingRect": {
+                        "x": 0,
+                        "y": 0,
+                        "width": 64,
+                        "height": 64
+                    }
                 }
             ]
         },
@@ -111,6 +122,17 @@
                     "center_y": 250,
                     "speed": 50,
                     "starting_angle": 210
+                },
+                {
+                    "name": "Collider",
+                    "type": "ColliderComponent",
+                    "module": "engine.components.collidercomponent",
+                    "boundingRect": {
+                        "x": 0,
+                        "y": 0,
+                        "width": 64,
+                        "height": 64
+                    }
                 }
             ]
         },
@@ -138,6 +160,17 @@
                             {"x": 50, "y": 100, "time": 0.5},
                             {"x": 0, "y": 0, "time": 0.5}
                         ]
+                },
+                {
+                    "name": "Collider",
+                    "type": "ColliderComponent",
+                    "module": "engine.components.collidercomponent",
+                    "boundingRect": {
+                        "x": 0,
+                        "y": 0,
+                        "width": 64,
+                        "height": 64
+                    }
                 }
             ]
         }

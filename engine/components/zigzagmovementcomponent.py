@@ -4,8 +4,8 @@ import random
 
 
 class ZigZagMovementComponent(Component):
-    def __init__(self, boundingRect, actor=None):
-        super().__init__(actor)
+    def __init__(self, name, boundingRect):
+        super().__init__(name)
         self.vx = 0.05
         self.vy = 0.05
         self.boundingRect = boundingRect
@@ -53,8 +53,8 @@ class ZigZagMovementComponent(Component):
             rectDescriptor["width"],
             rectDescriptor["height"],
         )
-        temp = ZigZagMovementComponent(r)
-        temp.name = componentDescriptor["name"]
+        name = componentDescriptor["name"]
+        temp = ZigZagMovementComponent(name, r)
         return temp
 
     def saveToDict(self):

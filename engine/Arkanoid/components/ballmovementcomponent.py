@@ -1,24 +1,16 @@
-from ..component import *
+from ...component import Component
 
 
-class BouncingMovementComponent(Component):
-    # Owner could be empty at first
+class BallMovementComponent(Component):
     def __init__(self, name, boundingRect):
         super().__init__(name)
-        self.vx = 0.05
-        self.vy = 0.05
         self.boundingRect = boundingRect
 
-    # I could implement some debugging rendering here
-    def render(self, surface):
-        pass
-
     def calculateDeltaVelocity(self, deltaTime):
-        deltavx = self.vx * deltaTime
-        deltavy = self.vy * deltaTime
+        deltavx = self.owner.vx * deltaTime
+        deltavy = self.owner.vy * deltaTime
         return (deltavx, deltavy)
 
-    # There will be timing involved
     def update(self, deltaTime):
         deltavx, deltavy = self.calculateDeltaVelocity(deltaTime)
 
@@ -27,11 +19,17 @@ class BouncingMovementComponent(Component):
 
         # bounce on the x axis
         if self.owner.x < 0 or self.owner.x > self.boundingRect.width:
-            self.vx = -self.vx
+            self.owner.vx = -self.owner.vx
 
         # bounce on the y axis
         if self.owner.y < 0 or self.owner.y > self.boundingRect.height:
-            self.vy = -self.vy
+            self.owner.vy = -self.owner.vy
+
+    def onCollision(self, direction):
+        if direction == "left" or direction == "right":
+            self.owner.vx = -self.owner.vx
+        if direction == "top" or direction == "bottom":
+            self.owner.vy = -self.owner.vy
 
     @staticmethod
     def loadFromDict(componentDescriptor):
@@ -45,9 +43,7 @@ class BouncingMovementComponent(Component):
             rectDescriptor["height"],
         )
         name = componentDescriptor["name"]
-        temp = BouncingMovementComponent(name, r)
-        temp.vx = componentDescriptor["vx"]
-        temp.vy = componentDescriptor["vy"]
+        temp = BallMovementComponent(name, r)
         return temp
 
     def saveToDict(self):
@@ -61,8 +57,8 @@ class BouncingMovementComponent(Component):
                     "width": self.boundingRect.width,
                     "height": self.boundingRect.height,
                 },
-                "vx": self.vx,
-                "vy": self.vy,
+                "vx": self.owner.vx,
+                "vy": self.owner.vy,
             },
         }
         return savedict

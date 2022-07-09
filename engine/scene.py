@@ -32,7 +32,7 @@ class Scene:
 
         for actorDescriptor in sceneDescriptor["actors"]:
             actor = Actor.loadFromDict(actorDescriptor)
-            self.actors.append(actor)
+            self.addActor(actor)
 
     def saveToDict(self):
         savedict = {
@@ -47,3 +47,10 @@ class Scene:
             actor_list.append(actor.saveToDict())
         savedict["actors"] = actor_list
         return savedict
+
+    def addActor(self, actor):
+        self.actors.append(actor)
+        actor.setOwner(self)
+
+    def removeActor(self, actor):
+        self.actors.remove(actor)

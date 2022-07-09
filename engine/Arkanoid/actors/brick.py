@@ -1,21 +1,31 @@
-from ..actor import Actor
+from ...actor import Actor
+from ...component import Component
 
 
-# Right now we don't have special things in this class, i need this class only for loading and saving purpose.
-class BaseActor(Actor):
-    pass
+class Brick(Actor):
+    def __init__(self, name, x, y, life):
+        super().__init__(name, x, y)
+        self.life = life
+
+    def onCollision(self, direction):
+        if self.life > 0:
+            self.destrucion()
+
+    def destrucion(self):
+        self.life -= 1
+        if self.life == 0:
+            self.owner.removeActor(self)
 
     @staticmethod
     def loadFromDict(actorDescriptor):
         name = actorDescriptor["name"]
         x = actorDescriptor["x"]
         y = actorDescriptor["y"]
+        life = actorDescriptor["life"]
 
-        actor = BaseActor(name, x, y)
+        actor = Brick(name, x, y, life)
 
         # Loading each component in the actor
-        from ..component import Component
-
         for componentDescriptor in actorDescriptor["components"]:
             component = Component.loadFromDict(componentDescriptor)
             actor.addComponent(component)

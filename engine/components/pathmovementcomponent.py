@@ -4,8 +4,8 @@ import math
 
 # This component get a list of coordinates and move the actor along the coordinates
 class PathMovementComponent(Component):
-    def __init__(self, path, actor=None):
-        super().__init__(actor)
+    def __init__(self, name, path):
+        super().__init__(name)
         self.vx = 0
         self.vy = 0
         self.index = 0
@@ -50,8 +50,8 @@ class PathMovementComponent(Component):
     @staticmethod
     def loadFromDict(componentDescriptor):
         path = componentDescriptor["path"]
-        temp = PathMovementComponent(path)
-        temp.name = componentDescriptor["name"]
+        name = componentDescriptor["name"]
+        temp = PathMovementComponent(name, path)
         return temp
 
     def saveToDict(self):

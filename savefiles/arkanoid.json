@@ -1,0 +1,144 @@
+{
+    "window": {
+        "width": 800,
+        "height": 600,
+        "title" : "SUPER MARIO!"
+    },
+    "actors": [
+        {
+            "name": "Background",
+            "type": "Background",
+            "module": "engine.actors.background",
+            "x": 0,
+            "y": 0,
+            "imagepath": "engine/Arkanoid/assets/hexagon_pattern.png",
+            "components": [
+                ]
+
+        },
+        {
+            "name": "Ball",
+            "type": "Ball",
+            "module": "engine.Arkanoid.actors.ball",
+            "x": 400,
+            "y": 300,
+            "vx": 200,
+            "vy": 200,
+            "components": [
+                {
+                    "name": "sprite",
+                    "type": "StaticSpriteComponent",
+                    "module": "engine.components.staticspritecomponent",
+                    "fileName": "engine/Arkanoid/assets/ball.png"
+                },
+                {
+                    "name": "Ball",
+                    "type": "BallMovementComponent",
+                    "module": "engine.Arkanoid.components.ballmovementcomponent",
+                    "boundingRect": {
+                        "x": 400,
+                        "y": 300,
+                        "width": 800,
+                        "height": 600
+                    }
+                },
+                {
+                    "name": "Collider",
+                    "type": "ColliderComponent",
+                    "module": "engine.components.collidercomponent",
+                    "boundingRect": {
+                        "x": 400,
+                        "y": 300,
+                        "width": 10,
+                        "height": 8
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Brick1",
+            "type": "Brick",
+            "module": "engine.Arkanoid.actors.brick",
+            "x": 300,
+            "y": 300,
+            "life": 1,
+            "components": [
+                {
+                    "name": "sprite",
+                    "type": "BrickRenderComponent",
+                    "module": "engine.Arkanoid.components.brickrendercomponent"
+                },
+                {
+                    "name": "Collider",
+                    "type": "ColliderComponent",
+                    "module": "engine.components.collidercomponent",
+                    "boundingRect": {
+                        "x": 300,
+                        "y": 300,
+                        "width": 30,
+                        "height": 14
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Brick1",
+            "type": "Brick",
+            "module": "engine.Arkanoid.actors.brick",
+            "x": 100,
+            "y": 100,
+            "life": 2,
+            "components": [
+                {
+                    "name": "sprite",
+                    "type": "BrickRenderComponent",
+                    "module": "engine.Arkanoid.components.brickrendercomponent"
+                },
+                {
+                    "name": "Collider",
+                    "type": "ColliderComponent",
+                    "module": "engine.components.collidercomponent",
+                    "boundingRect": {
+                        "x": 100,
+                        "y": 100,
+                        "width": 30,
+                        "height": 14
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Racket",
+            "type": "Racket",
+            "module": "engine.Arkanoid.actors.racket",
+            "x": 400,
+            "y": 550,
+            "vx": 0,
+            "vy": 0,
+            "components": [
+                {
+                    "name": "sprite",
+                    "type": "StaticSpriteComponent",
+                    "module": "engine.components.staticspritecomponent",
+                    "fileName": "engine/Arkanoid/assets/racket.png"
+                },
+                {
+                    "name": "Player Movement",
+                    "type": "RacketMovementComponent",
+                    "module": "engine.Arkanoid.components.racketmovementcomponent"
+                },
+                {
+                    "name": "Collider",
+                    "type": "ColliderComponent",
+                    "module": "engine.components.collidercomponent",
+                    "boundingRect": {
+                        "x": 400,
+                        "y": 550,
+                        "width": 72,
+                        "height": 24
+                    }
+                }
+            ]
+        }
+    ]
+}

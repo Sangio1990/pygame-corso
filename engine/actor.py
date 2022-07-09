@@ -1,9 +1,9 @@
 class Actor:
-    def __init__(self):
+    def __init__(self, name, x, y):
         self.components = []
-        self.x = 0
-        self.y = 0
-        self.name = ""
+        self.x = x
+        self.y = y
+        self.name = name
 
     def load(self):
         for a in self.components:
@@ -21,6 +21,12 @@ class Actor:
     def addComponent(self, component):
         self.components.append(component)
         component.setOwner(self)
+
+    def onCollision(self, otherCollider):
+        pass
+
+    def setOwner(self, scene):
+        self.owner = scene
 
     @staticmethod
     def loadFromDict(actorDescriptor):

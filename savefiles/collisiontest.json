@@ -20,11 +20,11 @@
                 },
                 {
                     "name": "mario",
-                    "type": "MarioMovementComponent",
-                    "module": "engine.components.mariomovementcomponent",
+                    "type": "FreeMovementComponent",
+                    "module": "engine.components.freemovementcomponent",
                     "boundingRect": {
-                        "x": 0,
-                        "y": 0,
+                        "x": 400,
+                        "y": 300,
                         "width": 800,
                         "height": 468
                     }
@@ -34,8 +34,8 @@
                     "type": "ColliderComponent",
                     "module": "engine.components.collidercomponent",
                     "boundingRect": {
-                        "x": 0,
-                        "y": 0,
+                        "x": 400,
+                        "y": 300,
                         "width": 64,
                         "height": 64
                     }
@@ -60,8 +60,8 @@
                     "type": "ColliderComponent",
                     "module": "engine.components.collidercomponent",
                     "boundingRect": {
-                        "x": 0,
-                        "y": 0,
+                        "x": 300,
+                        "y": 300,
                         "width": 64,
                         "height": 64
                     }

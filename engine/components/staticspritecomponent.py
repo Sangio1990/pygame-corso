@@ -3,8 +3,8 @@ import pygame
 
 
 class StaticSpriteComponent(Component):
-    def __init__(self, assetFileName, actor=None):
-        super().__init__(actor)
+    def __init__(self, name, assetFileName):
+        super().__init__(name)
         self.assetFileName = assetFileName
         self.image = None
 
@@ -13,15 +13,15 @@ class StaticSpriteComponent(Component):
 
     def render(self, surface):
         rect = self.image.get_rect()
-        rect.centerx = self.owner.x
-        rect.centery = self.owner.y
+        rect.x = self.owner.x
+        rect.y = self.owner.y
         surface.blit(self.image, rect)
 
     @staticmethod
     def loadFromDict(componentDescriptor):
         filename = componentDescriptor["fileName"]
-        temp = StaticSpriteComponent(filename)
-        temp.name = componentDescriptor["name"]
+        name = componentDescriptor["name"]
+        temp = StaticSpriteComponent(name, filename)
         return temp
 
     def saveToDict(self):

@@ -3,8 +3,8 @@ import pygame
 
 
 class MarioMovementComponent(Component):
-    def __init__(self, boundingRect):
-        super().__init__()
+    def __init__(self, name, boundingRect):
+        super().__init__(name)
         from ..engine import Engine
 
         engine = Engine()
@@ -72,9 +72,9 @@ class MarioMovementComponent(Component):
             rectDescriptor["width"],
             rectDescriptor["height"],
         )
+        name = componentDescriptor["name"]
+        temp = MarioMovementComponent(name, r)
 
-        temp = MarioMovementComponent(r)
-        temp.name = componentDescriptor["name"]
         # If the actor was moving we keep the inertia while loading
         try:
             temp.vx = componentDescriptor["vx"]
