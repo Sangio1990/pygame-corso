@@ -35,7 +35,6 @@ class Actor:
         module = importlib.import_module(actorDescriptor["module"])
         base_class = getattr(module, actorDescriptor["type"])
         actor = base_class.loadFromDict(actorDescriptor)
-
         return actor
 
     def saveToDict(self):

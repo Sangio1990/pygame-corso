@@ -1,28 +1,20 @@
-from ..component import Component
-import pygame
+from ...components.collidercomponent import ColliderComponent
 
 
-class ColliderComponent(Component):
+class DeadZoneColliderComponent(ColliderComponent):
     def __init__(self, name, AABB):
         super().__init__(name)
         self.AABB = AABB
 
     def update(self, deltaTime):
         self.AABB.x = self.owner.x
-        self.AABB.y = self.owner.y
+        self.AABB.y = self.owner.y + 20  # 20px are the transparent space above the beam
 
     def load(self):
-        from ..engine import Engine
+        from ...engine import Engine
 
         e = Engine()
         e.collisionSystem.registerCollider(self)
-
-    def onCollision(self, direction):
-        return self.owner.onCollision(direction)
-
-    def render(self, surface):
-        color = (255, 0, 0)
-        pygame.draw.rect(surface, color, self.AABB, 2)
 
     @staticmethod
     def loadFromDict(componentDescriptor):
@@ -36,7 +28,7 @@ class ColliderComponent(Component):
             rectDescriptor["height"],
         )
         name = componentDescriptor["name"]
-        temp = ColliderComponent(name, r)
+        temp = DeadZoneColliderComponent(name, r)
 
         return temp
 

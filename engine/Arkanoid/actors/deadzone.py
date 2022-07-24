@@ -2,29 +2,17 @@ from ...actor import Actor
 from ...component import Component
 
 
-class Brick(Actor):
-    def __init__(self, name, x, y, life):
-        super().__init__(name, x, y)
-        self.life = life
-
+class DeadZone(Actor):
     def onCollision(self, direction):
-        if self.life > 0:
-            return self.destrucion()
-
-    def destrucion(self):
-        self.life -= 1
-        if self.life == 0:
-            self.owner.removeActor(self)
-            return True
+        print("GAME OVER!")
 
     @staticmethod
     def loadFromDict(actorDescriptor):
         name = actorDescriptor["name"]
         x = actorDescriptor["x"]
         y = actorDescriptor["y"]
-        life = actorDescriptor["life"]
 
-        actor = Brick(name, x, y, life)
+        actor = DeadZone(name, x, y)
 
         # Loading each component in the actor
         for componentDescriptor in actorDescriptor["components"]:

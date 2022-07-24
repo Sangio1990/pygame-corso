@@ -26,9 +26,9 @@ class RacketMovementComponent(Component):
 
     def keyPressed(self, key):
         if key == pygame.locals.K_LEFT:
-            self.vx = -400
+            self.vx = -300
         if key == pygame.locals.K_RIGHT:
-            self.vx = 400
+            self.vx = 300
 
     @staticmethod
     def loadFromDict(componentDescriptor):

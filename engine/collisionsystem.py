@@ -14,8 +14,10 @@ class CollisionSystem:
                     if a is not b:  # Just to be safe, but shouldn't be needed.
                         if a.AABB.colliderect(b.AABB):
                             direction = self.calculateCollisionDirections(a, b)
-                            a.onCollision(direction)
-                            b.onCollision(direction)
+                            if a.onCollision(direction):
+                                self.colliders.remove(a)
+                            if b.onCollision(direction):
+                                self.colliders.remove(b)
                             print(
                                 str(a.owner.name)
                                 + " collided with "

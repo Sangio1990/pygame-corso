@@ -15,6 +15,9 @@ class BrickRenderComponent(Component):
         self.color = (255, 255, 255)
 
     def load(self):
+        self.update(0)
+
+    def update(self, deltaTime):
         if self.owner.life == -1:
             self.image = pygame.image.load(self.lifecolor[-1])
         else:
@@ -23,8 +26,8 @@ class BrickRenderComponent(Component):
     def render(self, surface):
         if self.image is not None:
             rect = self.image.get_rect()
-            rect.centerx = self.owner.x
-            rect.centery = self.owner.y
+            rect.x = self.owner.x
+            rect.y = self.owner.y
             surface.blit(self.image, rect)
         else:
             pygame.draw.rect(
